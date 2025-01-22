@@ -1,2 +1,2 @@
 # public-required-workflow
-Required workflows to be used by public repositories
+repository containing the code for the required workflows that public repos shall run
