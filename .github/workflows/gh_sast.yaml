@@ -16,7 +16,7 @@ jobs:
       - name: Generate Asset Prefix
         id: meta
         run: |
-          SCAN_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          SCAN_TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
           echo "scan_timestamp=$SCAN_TIMESTAMP" >> "$GITHUB_OUTPUT"
 
           REPO_SLUG="${FULL_REPO_NAME##*/}"
