@@ -37,6 +37,6 @@ jobs:
     uses: Kong/public-shared-actions/.github/workflows/gh-analyze.yml@feat/gh-anti-pattern-scan 
     with:
       TARGET_SCAN_REPOSITORY: ${{github.repository}}
-      TARGET_SCAN_REF: ${{github.ref_name}}
+      TARGET_SCAN_REF: ${{github.ref}}
       ASSET_PREFIX: ${{needs.metadata.outputs.ASSET_PREFIX}}
       FAIL_ZIZMOR: ${{vars.FAIL_ZIZMOR}}
