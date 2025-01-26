@@ -7,36 +7,15 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  metadata:
-    runs-on: ubuntu-latest
-    name: metadata
-    outputs:
-      ASSET_PREFIX: ${{steps.meta.outputs.ASSET_PREFIX}}
-    steps:
-      - name: Generate Asset Prefix
-        id: meta
-        run: |
-          SCAN_TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
-          echo "scan_timestamp=$SCAN_TIMESTAMP" >> "$GITHUB_OUTPUT"
-
-          REPO_SLUG="${FULL_REPO_NAME##*/}"
-          echo "REPO_SLUG=${REPO_SLUG}" >> "$GITHUB_OUTPUT"
-          echo "ASSET_PREFIX=report_$REPO_SLUG_$TARGET_SCAN_REF_$SCAN_TIMESTAMP" >> "$GITHUB_OUTPUT"
-        env:
-          FULL_REPO_NAME: ${{github.repository}}
-          TARGET_SCAN_REF: ${{github.ref_name}}
-
   analyze-ci:
     name: Analyze CI - ${{github.repository}}
     permissions:
       contents: read
       actions: read
       pull-requests: read
-    needs: [metadata]
       # security-events: write # publish codeql results
     uses: Kong/public-shared-actions/.github/workflows/gh-analyze.yml@feat/gh-anti-pattern-scan 
     with:
       TARGET_SCAN_REPOSITORY: ${{github.repository}}
       TARGET_SCAN_REF: ${{github.ref}}
-      ASSET_PREFIX: ${{needs.metadata.outputs.ASSET_PREFIX}}
       FAIL_ZIZMOR: ${{vars.FAIL_ZIZMOR}}
