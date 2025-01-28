@@ -18,4 +18,3 @@ jobs:
     with:
       TARGET_SCAN_REPOSITORY: ${{github.repository}}
       TARGET_SCAN_REF: ${{github.ref}}
-      FAIL_ZIZMOR: ${{vars.FAIL_ZIZMOR}}
