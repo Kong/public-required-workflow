@@ -46,7 +46,7 @@ jobs:
           TARGET_SCAN_REF: ${{github.ref}}
       - name: Check GH anti-pattern using zizmor
         id: zizmor
-        uses: Kong/public-shared-actions/security-actions/scan-gh-workflows@f2b77d6aa619dbe3bfcc1ac4f99af7d02614e90a # v4.1.0
+        uses: Kong/public-shared-actions/security-actions/scan-gh-workflows@21158ae3c9c2fdcb72c3fcedaf552e3f6007f05d # v4.1.2
         with:
           scan_path: ${{github.workspace}}/${{github.repository}}
           github_token: ${{ github.token }}
